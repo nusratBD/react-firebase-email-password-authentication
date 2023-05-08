@@ -9,11 +9,27 @@ const SignUp = () => {
     const [success, setSuccess] = useState('');
     const handleSubmit = (event) => {
         event.preventDefault();
+        setError('');
+        setSuccess('');
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        setError('');
-        setSuccess('');
+        if(!/(?=.*[A-Z].*[A-Z])/.test(password)){
+            setError('Please add at least two uppercase in your password');
+            return;
+        }
+        else if(!/(?=.*[!@#$&*])/.test(password)){
+            setError('Please add at least one special character in your password');
+            return;
+        }
+        else if(!/(?=.*[0-9].*[0-9])/){
+            setError('Please add at least two digits in your password');
+            return;
+        }
+        else if(password.length<8){
+            setError('Password must be eight character!');
+            return;
+        }
         createUserWithEmailAndPassword(auth, email, password)
             .then((data) => {
                 const user = data.user;
@@ -43,10 +59,10 @@ const SignUp = () => {
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
                 <p className='text-danger'>{error}</p>
-                <p className='text-success'>{success}</p>
-                <Button variant="primary" type="submit">
+                <Button variant="primary fw-bold" type="submit">
                     Submit
                 </Button>
+                <p className='text-success fw-bold'>{success}</p>
             </Form>
         </div>
     );
