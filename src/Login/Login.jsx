@@ -19,7 +19,12 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                setSuccess('Log in Successful');
+                if(!user.emailVerified){
+                    alert('Your Email is not verified yet!!!')
+                }
+                else{
+                    setSuccess('Log in Successful');
+                }
             })
             .catch((error) => {
                 setError(error.message);
