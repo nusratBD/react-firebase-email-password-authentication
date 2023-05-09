@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../assets/firebase/firebase.init';
+import { Link } from 'react-router-dom';
 const auth = getAuth(app);
 const SignUp = () => {
     const [error, setError] = useState('');
@@ -64,6 +65,7 @@ const SignUp = () => {
                 </Button>
                 <p className='text-success fw-bold'>{success}</p>
             </Form>
+            <div><small>Already have an account? Please <Link to='/log-in'>log in</Link>.</small></div>
         </div>
     );
 };
