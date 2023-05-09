@@ -1,0 +1,22 @@
+.password{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+}
+.form-area{
+    position: relative;
+    width: 50%;
+}
+.password-btn{
+    border: 0;
+    color: blue;
+}
+@media only screen and (max-width: 576px) {
+    .form-area{
+        width: 100%;
+    }
+    .password{
+        top: 46%;
+    }
+}
